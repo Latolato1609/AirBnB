@@ -40,7 +40,7 @@ store.on("error", ()=>{
 })
 
 const sessionOptions = {
-    store: store,
+    // store: store,
     secret: process.env.SECRET,
     resave: false,
     saveUninitialized: true,
@@ -83,7 +83,7 @@ main()
 
 // }
 
-//Connection With DBURL
+// Connection With DBURL
 
 async function main() {
     await mongoose.connect(dbUrl);
