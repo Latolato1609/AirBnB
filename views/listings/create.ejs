@@ -1,0 +1,61 @@
+<% layout('/layouts/boilerplate') %>
+
+<div class="d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+    <div class="col-8">
+        <div class="card p-4 shadow" style="border-radius: 12px; box-shadow: 0px 4px 8px rgba(255, 0, 0, 0.2);">
+            <h3 class="text-center mb-4">Create Listing</h3>
+
+            <form action="/listings" method="post" novalidate class="needs-validation" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title</label>
+                    <input type="text" name="listing[title]" placeholder="Add a catchy title" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea name="listing[description]" placeholder="Description here..." class="form-control" required></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label for="image" class="form-label">Upload Listing Image</label>
+                    <input type="file" name="listing[image]" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="location" class="form-label">Location</label>
+                    <input type="text" name="listing[location]" placeholder="Jaipur, Rajasthan" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="category" class="form-label">Category</label>
+                    <select name="listing[category]" class="form-control" required>
+                        <option value="" disabled selected>Select a category</option>
+                        <option value="Surfing" <%= listing && listing.category === 'Surfing' ? 'selected' : '' %>>Surfing</option>
+                        <option value="Trending" <%= listing && listing.category === 'Trending' ? 'selected' : '' %>>Trending</option>
+                        <option value="Mountain" <%= listing && listing.category === 'Mountains' ? 'selected' : '' %>>Mountain</option>
+                        <option value="Pool" <%= listing && listing.category === 'Amazing Pools' ? 'selected' : '' %>>Pool</option>
+                        <option value="Camping" <%= listing && listing.category === 'Camping' ? 'selected' : '' %>>Camping</option>
+                        <option value="Farm" <%= listing && listing.category === 'Farms' ? 'selected' : '' %>>Farm</option>
+                        <option value="Arctic" <%= listing && listing.category === 'Arctic' ? 'selected' : '' %>>Arctic</option>
+                    </select>
+                </div>
+
+                <div class="row">
+                    <div class="mb-3 col-md-4">
+                        <label for="price" class="form-label">Price</label>
+                        <input type="text" name="listing[price]" placeholder="1200" class="form-control" required>
+                    </div>
+
+                    <div class="mb-3 col-md-8">
+                        <label for="country" class="form-label">Country</label>
+                        <input type="text" name="listing[country]" placeholder="India" class="form-control" required>
+                    </div>
+                </div>
+
+                <div class="d-flex ">
+                    <button class="btn btn-dark mt-3 px-4">Add</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

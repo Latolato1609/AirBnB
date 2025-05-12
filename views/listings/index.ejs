@@ -1,0 +1,156 @@
+<% layout('/layouts/boilerplate') %>
+
+<style>
+    #filters {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+
+    .filter {
+        text-align: center;
+        margin-top: 2rem;
+        margin-right: 3rem;
+        margin-bottom: 1rem;
+        opacity: 0.7;
+    }
+
+    @media (max-width: 768px) {
+        .filter {
+            margin-right: 1.5rem;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .filter i {
+            font-size: 0.9rem;
+        }
+
+        .filter p {
+            font-size: 0.8rem;
+            margin-bottom: 0;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .filter {
+            margin-right: 1rem;
+            margin-top: 0.8rem;
+        }
+
+        .filter i {
+            font-size: 0.8rem;
+        }
+
+        .filter p {
+            font-size: 0.7rem;
+        }
+    }
+
+    .filter:hover {
+        opacity: 1;
+        cursor: pointer;
+    }
+
+    .tax-info {
+        display: none;
+    }
+
+    .tax-toogle {
+        border: 1px solid black;
+        border-radius: 1rem;
+        height: 3.25rem;
+        padding: 1rem;
+        margin-left: 3rem;
+        margin-right: 4rem;
+        display: flex;
+        align-items: center;
+    }
+
+    @media (max-width: 768px) {
+        .tax-toogle {
+            margin-left: 1.5rem;
+            margin-right: 2rem;
+            padding: 0.8rem;
+            height: 2.75rem;
+        }
+    }
+</style>
+
+<div id="filters">
+    <div class="filter" id="Surfing" onclick="filterCategory('Surfing')">
+        <div><i class="fa-solid fa-sailboat"></i></div>
+        <p>Surfing</p>
+    </div>
+    <div class="filter" id="Trending" onclick="filterCategory('Trending')">
+        <div><i class="fa-solid fa-fire"></i></div>
+        <p>Trending</p>
+    </div>
+    <div class="filter" id="Mountain" onclick="filterCategory('Mountain')">
+        <div><i class="fa-solid fa-mountain-city"></i></div>
+        <p>Mountains</p>
+    </div>
+    <div class="filter" id="Pool" onclick="filterCategory('Pool')">
+        <div><i class="fa-solid fa-person-swimming"></i></div>
+        <p>Amazing Pools</p>
+    </div>
+    <div class="filter" id="Camping" onclick="filterCategory('Camping')">
+        <div><i class="fa-solid fa-campground"></i></div>
+        <p>Camping</p>
+    </div>
+    <div class="filter" id="Farm" onclick="filterCategory('Farm')">
+        <div><i class="fa-solid fa-person-swimming"></i></div>
+        <p>Farms</p>
+    </div>
+    <div class="filter" id="Artic" onclick="filterCategory('Artic')">
+        <div><i class="fa-regular fa-snowflake"></i></div>
+        <p>Artic</p>
+    </div>
+    
+    <div class="tax-toogle">
+       <div class="form-check form-switch form-check-reverse">
+           <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+           <label class="form-check-label" for="flexSwitchCheckReverse">Display total before taxes</label>
+       </div>
+    </div>
+</div>
+
+<body>
+    <div class="row row-cols-lg-3 row-cols-sm-md-2 row-cols-sm-1">
+        <% for (let listing of allListing) { %>
+            <a href="/listings/<%= listing._id %>" class="listing-link">
+                <div class="card col listing-card">
+                    <img src="<%= listing.image.url %>" class="card-img-top" alt="listing_image" style="height: 20rem;">
+                    <div class="card-img-overlay"></div>
+                    <div class="card-body">
+                        <div class="card-text">
+                            <b><%= listing.title %></b><br>
+                            &#8377; <%= listing.price.toLocaleString("en-IN") %> / night
+                            <i class="tax-info">&nbsp; &nbsp; +18% GST</i>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        <% } %>
+    </div>
+</body>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        let taxSwitch = document.getElementById("flexSwitchCheckDefault");
+        taxSwitch.addEventListener("click", () => {
+            let taxInfo = document.getElementsByClassName("tax-info");
+            for (info of taxInfo) {
+                if (info.style.display !== "inline") {
+                    info.style.display = "inline";
+                } else {
+                    info.style.display = "none";
+                }
+            }
+        });
+    });
+
+    function filterCategory(category) {
+        window.location.href = `/listings?category=${category}`;
+    }
+</script>

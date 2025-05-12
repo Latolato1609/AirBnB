@@ -1,0 +1,34 @@
+/* Center the form */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Card-like form */
+.card-form {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(255, 56, 92, 0.2);
+    max-width: 600px;
+    width: 100%;
+}
+
+/* Keep Bootstrap Input Styling */
+.form-control {
+    border-radius: 8px;
+}
+
+/* Submit Button */
+.add-btn {
+    width: 100%;
+    background-color: #ff385c;
+    border: none;
+    transition: 0.3s;
+}
+
+.add-btn:hover {
+    background-color: #e0314c;
+}

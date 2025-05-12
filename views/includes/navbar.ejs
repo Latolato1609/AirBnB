@@ -1,0 +1,184 @@
+<style>
+  /* 🌟 Navbar Styling - Airbnb Inspired 🌟 */
+  
+  /* Navbar Container */
+  .navbar {
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 1rem 2rem;
+  }
+
+  /* Logo & Text */
+  .caption {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .caption-text a {
+    color: #fe424d;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+  .caption-logo i {
+    font-size: 2rem;
+    color: #fe424d;
+  }
+
+  /* Search Bar */
+  .search-box {
+    width: 300px;
+    border-radius: 30px;
+    padding: 0.6rem 1rem;
+    border: 1px solid #ccc;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .search-box:focus {
+    border-color: #fe424d;
+    box-shadow: 0 0 8px rgba(254, 66, 77, 0.3);
+    outline: none;
+  }
+
+  /* Search Button */
+  .btn-search {
+    background-color: #fe424d;
+    color: #fff;
+    padding: 0.6rem 1.2rem;
+    border-radius: 30px;
+    border: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease-in-out;
+  }
+
+  .btn-search:hover {
+    background-color: #e62e50;
+  }
+
+  /* Navigation Links */
+  .navbar-nav .nav-link {
+    color: #222;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    transition: color 0.3s ease-in-out;
+  }
+
+  .navbar-nav .nav-link:hover {
+    color: #fe424d;
+  }
+
+  /* Rounded Buttons for Signup/Login/Logout */
+  .auth-btn {
+    padding: 0.5rem 1.2rem;
+    border-radius: 30px;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .btn-signup {
+    background-color: #fe424d;
+    color: #fff;
+    border: none;
+  }
+
+  .btn-signup:hover {
+    background-color: #e62e50;
+  }
+
+  .btn-login {
+    background-color: transparent;
+    color: #222;
+    border: 1px solid #ddd;
+  }
+
+  .btn-login:hover {
+    border-color: #fe424d;
+    color: #fe424d;
+  }
+
+  .btn-logout {
+    background-color: #333;
+    color: #fff;
+    border: none;
+  }
+
+  .btn-logout:hover {
+    background-color: #444;
+  }
+
+  /* Responsive Navbar */
+  @media (max-width: 992px) {
+    .navbar {
+      padding: 1rem;
+    }
+
+    .search-box {
+      width: 100%;
+      padding: 0.5rem 1rem;
+    }
+
+    .btn-search {
+      width: 100%;
+      padding: 0.5rem;
+    }
+
+    .navbar-nav {
+      text-align: center;
+    }
+
+    .auth-btn {
+      width: 100%;
+    }
+  }
+</style>
+
+<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
+  <div class="container-fluid ">
+    <!-- Logo & Branding -->
+    <div class="caption">
+      <div class="caption-logo">
+        <a class="navbar-brand" href="/listings"><i class="fa-brands fa-airbnb"></i></a>
+      </div>
+      <div class="caption-text">
+        <a href="/listings">Airbnb</a>
+      </div>
+    </div>
+
+    <!-- Mobile Menu Button -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar Content -->
+    <div class="collapse navbar-collapse explore" id="navbarNavAltMarkup" >
+      <!-- Search Bar -->
+      <div class="navbar-nav mx-auto d-flex justify-content-center ">
+        <form class="d-flex align-items-center search-form" role="search" method="GET" action="/listings">
+          <input class="form-control search-box" type="search" name="country" placeholder="Search your destined country">
+          <button class="btn btn-search" type="submit">
+            <i class="fa-solid fa-magnifying-glass"></i> Search
+          </button>
+        </form>          
+      </div> 
+      
+      <!-- Right-Side Links -->
+      <div class="navbar-nav ms-auto d-flex align-items-center gap-2">
+        <a class="nav-link" href="/listings/create">Airbnb your home</a>
+        
+        <% if (!currUser) { %>
+          <a href="/signup" class="auth-btn btn-signup">Sign up</a>
+          <a href="/login" class="auth-btn btn-login">Log in</a>
+        <% } %>
+
+        <% if (currUser) { %>
+          <a href="/logout" class="auth-btn btn-logout">Log out</a> 
+        <% } %>
+      </div>
+    </div>
+  </div>
+</nav>

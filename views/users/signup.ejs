@@ -1,0 +1,110 @@
+<% layout('/layouts/boilerplate') %>
+
+<div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="signup-container">
+        <h1 class="text-center mb-4">Sign Up</h1>
+        <form action="/signup" method="post" class="needs-validation" novalidate>
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" name="user[username]" id="username" class="form-control input-field" required>
+                <div class="valid-feedback">Looks good!</div>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" name="user[email]" id="email" class="form-control input-field" required>
+                <div class="valid-feedback">Looks good!</div>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" name="user[password]" id="password" class="form-control input-field" required>
+                <div class="valid-feedback">Looks good!</div>
+            </div>
+            <button class="btn btn-primary w-100 signup-btn">Create Account</button>
+        </form>
+        <div class="text-center mt-3">
+            <span>Already have an account? <a href="/login" class="link-primary">Log in</a></span>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* 🌟 Airbnb-Inspired Signup Form Styling 🌟 */
+
+    /* Main container */
+    .signup-container {
+        width: 500px;
+        padding: 40px;
+        border-radius: 14px;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        background-color: white;
+        text-align: left;
+        transition: all 0.3s ease-in-out;
+    }
+
+    /* Input fields */
+    .input-field {
+        border-radius: 10px;
+        padding: 12px;
+        font-size: 18px;
+        border: 1.5px solid #ccc;
+        transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .input-field:focus {
+        border-color: #ff385c;
+        outline: none;
+        box-shadow: 0 0 8px rgba(255, 56, 92, 0.4);
+    }
+
+    /* Signup button */
+    .signup-btn {
+        background-color: #ff385c;
+        border-radius: 10px;
+        font-weight: bold;
+        padding: 14px;
+        font-size: 18px;
+        transition: background-color 0.3s;
+    }
+
+    .signup-btn:hover {
+        background-color: #e62e50;
+    }
+
+    /* 🌍 Responsive Design */
+    @media (max-width: 768px) {
+        .signup-container {
+            width: 90%;
+            padding: 30px;
+        }
+
+        .input-field {
+            font-size: 16px;
+            padding: 10px;
+        }
+
+        .signup-btn {
+            padding: 12px;
+            font-size: 16px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .signup-container {
+            width: 100%;
+            border-radius: 0;
+            box-shadow: none;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .signup-container h1 {
+            font-size: 24px;
+        }
+
+        .signup-btn {
+            font-size: 16px;
+        }
+    }
+</style>
