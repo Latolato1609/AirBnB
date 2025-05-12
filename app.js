@@ -25,7 +25,8 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const passportLocalMongoose = require("passport-local-mongoose");
 
-const dbUrl = process.env.ATLASTDB_URL;
+// const dbUrl = process.env.ATLASTDB_URL;
+const dbUrl = process.env.ATLASTDB_URL.replace(/\/\?retryWrites.+$/, '');
 
 const store = MongoStore.create({
     mongoUrl: dbUrl,
@@ -35,7 +36,7 @@ const store = MongoStore.create({
     touchAfter: 24 * 60 * 60
 })
 
-store.on("error", ()=>{
+store.on("error", (err)=>{
     console.log("Error in MONGO SESSION STORE", err)
 })
 
@@ -85,9 +86,20 @@ main()
 
 // Connection With DBURL
 
+// async function main() {
+//     await mongoose.connect(dbUrl);
+// }
+
+
 async function main() {
-    await mongoose.connect(dbUrl);
+    try {
+        await mongoose.connect(dbUrl);
+        console.log("Connected to DB");
+    } catch (err) {
+        console.log("DB Connection Error:", err);
+    }
 }
+
 
 app.use((req, res, next)=>{
     res.locals.success = req.flash("success");
@@ -116,9 +128,10 @@ app.use("/", userRouter);
 //     res.send("Route Working");
 // });
 
-app.all("*", (req, res, next)=>{
+app.all("*", (req, res, next) => {
     next(new ExpressError(404, "Page not Found!!!"));
-})
+});
+
 
 app.use((err, req, res, next)=>{
     console.log(err);
