@@ -93,9 +93,8 @@ app.use("/listings", listingRouter);
 app.use("/listings/:id/reviews", reviewRouter);
 app.use("/", userRouter);
 
-// ✅ 404 handler
-app.all("*", (req, res, next) => {
-    next(new ExpressError(404, "Page Not Found!"));
+app.get("/", (req, res) => {
+    res.send("Welcome to Wanderlust! 🎉 Server is up and running.");
 });
 
 // ✅ Error handler
